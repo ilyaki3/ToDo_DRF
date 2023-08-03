@@ -2,6 +2,7 @@ from django.core.management.base import BaseCommand
 
 from authapp.models import User
 
+
 class Command(BaseCommand):
     help = 'Creating superuser and some test users'
 
