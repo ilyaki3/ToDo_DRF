@@ -13,9 +13,8 @@ class ProjectSerializer(ModelSerializer):
         fields = ('name', 'repository_link', 'users')
 
 
-# class NoteSerializer(HyperlinkedModelSerializer):
 class NoteSerializer(ModelSerializer):
-    user = StringRelatedField()
+    #     user = StringRelatedField()
     project = StringRelatedField()
 
     class Meta:

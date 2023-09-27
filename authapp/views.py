@@ -1,10 +1,11 @@
 from django.shortcuts import render
 
-from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import GenericViewSet
 from .models import User
 from .serializers import UserSerializer
+from rest_framework.mixins import ListModelMixin, RetrieveModelMixin, UpdateModelMixin
 
 
-class UserModelViewSet(ModelViewSet):
+class UserCustomViewSet(ListModelMixin, RetrieveModelMixin, UpdateModelMixin, GenericViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer

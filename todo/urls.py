@@ -18,16 +18,21 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from authapp.views import UserModelViewSet
-from notes.views import ProjectModelViewSet, NoteModelViewSet
+from authapp.views import UserCustomViewSet
+from notes.filters import ProjectParamFilterViewSet
+from notes.views import ProjectViewSet, NoteModelViewSet
 
 router = DefaultRouter()
-router.register('user', UserModelViewSet)
-router.register('project', ProjectModelViewSet)
+router.register('user', UserCustomViewSet)
+router.register('project', ProjectViewSet, basename='project')
 router.register('note', NoteModelViewSet)
+
+filter_router = DefaultRouter()
+filter_router.register('projects', ProjectParamFilterViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),
+    path('filters/', include(filter_router.urls)),
 ]
